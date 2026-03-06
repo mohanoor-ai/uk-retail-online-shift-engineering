@@ -1,0 +1,15 @@
+# What: Local environment setup
+# Why: To run Airflow and a database locally before moving to GCP
+version: '3.8'
+services:
+  # We'll use DuckDB for the local warehouse (it's incredibly fast for 12 cores)
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=moha
+      - POSTGRES_PASSWORD=moha
+      - POSTGRES_DB=uk_retail
+    ports:
+      - "5432:5432"
+
+  # Airflow setup would go here next once the DB is up
